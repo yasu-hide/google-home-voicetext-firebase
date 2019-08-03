@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: google-home-voicetext-firebase
+spec:
+  selector:
+    matchLabels:
+      app: google-home-voicetext-firebase
+  template:
+    metadata:
+      labels:
+        app: google-home-voicetext-firebase
+    spec:
+      containers:
+      - name: google-home-voicetext-firebase
+        image: vet5lqplpecmpnqb/google-home-voicetext-firebase:latest
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+        envFrom:
+        - configMapRef:
+            name: google-home-voicetext-firebase
+        env:
+          - name: FIRESTORE_URL
+            valueFrom:
+              secretKeyRef:
+                name: google-home-voicetext-firebase
+                key: FIRESTORE_URL
+        volumeMounts:
+        - name: firebase-credential
+          mountPath: /tmp/cred
+          readOnly: true
+      volumes:
+      - name: firebase-credential
+        secret:
+          secretName: google-home-voicetext-firebase
+          items:
+          - key: firebase-credential
+            path: serviceAccountKey.json
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: google-home-voicetext-firebase
+data:
+  TZ: 'JST-9'
+  SERVER_ADDRESS: ''
+  SERVER_PORT: '80'
+  DEVICE_ADDRESS: ''
+  FIREBASE_CREDENTIAL: '/tmp/cred/serviceAccountKey.json'
