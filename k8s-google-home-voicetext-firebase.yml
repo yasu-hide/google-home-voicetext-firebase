@@ -46,7 +46,7 @@ metadata:
   name: google-home-voicetext-firebase
 data:
   TZ: 'JST-9'
-  SERVER_ADDRESS: ''
-  SERVER_PORT: '80'
+  SERVER_ADDRESS: 'google-home-voicetext-server'
+  SERVER_PORT: '8080'
   DEVICE_ADDRESS: ''
   FIREBASE_CREDENTIAL: '/tmp/cred/serviceAccountKey.json'
