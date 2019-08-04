@@ -20,7 +20,6 @@ const endpointUrl = url.format({
 const options = {
     url: endpointUrl.toString(),
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     form: {}
 };
 
