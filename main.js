@@ -9,6 +9,12 @@ if(!process.env["SERVER_ADDRESS"]) {
 if(!process.env["DEVICE_ADDRESS"]) {
     throw new Error("DEVICE_ADDRESS required.");
 }
+if(!process.env["FIREBASE_CREDENTIAL"]) {
+    throw new Error("FIREBASE_CREDENTIAL required.");
+}
+if(!process.env["FIREBASE_DATABASE_URL"]) {
+    throw new Error("FIREBASE_DATABASE_URL required.");
+}
 
 const endpointUrl = url.format({
     protocol: 'http',
@@ -27,7 +33,7 @@ const admin = require("firebase-admin");
 const serviceAccount = require(process.env["FIREBASE_CREDENTIAL"]);
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: process.env["FIRESTORE_URL"]
+    databaseURL: process.env["FIREBASE_DATABASE_URL"]
 });
 
 const firestore = admin.firestore();
