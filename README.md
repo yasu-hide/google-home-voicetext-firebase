@@ -29,15 +29,6 @@ export DEVICE_ADDRESS=192.168.20.200
 export FIREBASE_CREDENTIAL=/tmp/cred/serviceAccountKey.json
 ```
 
-## FIREBASE_DATABASE_URL (必須)
-Firebase Realtime DatabaseのURLです。
-
-詳しい内容は、[JavaScriptでのインストールと設定](https://firebase.google.com/docs/database/web/start?hl=ja)を参照してください。
-
-```
-export FIREBASE_DATABASE_URL={`databaseURL`の値}
-```
-
 ## SERVER_PORT (任意)
 google-home-voicetext-serverのポート番号です。
 
@@ -61,8 +52,7 @@ export FIREBASE_DOCPATH=/googlehome/voicetext
 認証情報やデータベースURLはシークレットに保存します。
 ```
 $ kubectl create secret generic google-home-voicetext-firebase \
-  --from-file=firebase-credential=./serviceAccountKey.json \
-  --from-literal=FIREBASE_DATABASE_URL=https://FIREBASE_PROJECTID.firebaseio.com/
+  --from-file=firebase-credential=./serviceAccountKey.json
 ```
 
 ## ConfigMap編集

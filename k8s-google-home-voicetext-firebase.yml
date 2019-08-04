@@ -22,12 +22,6 @@ spec:
         envFrom:
         - configMapRef:
             name: google-home-voicetext-firebase
-        env:
-          - name: FIRESTORE_URL
-            valueFrom:
-              secretKeyRef:
-                name: google-home-voicetext-firebase
-                key: FIRESTORE_URL
         volumeMounts:
         - name: firebase-credential
           mountPath: /tmp/cred

@@ -12,9 +12,6 @@ if(!process.env["DEVICE_ADDRESS"]) {
 if(!process.env["FIREBASE_CREDENTIAL"]) {
     throw new Error("FIREBASE_CREDENTIAL required.");
 }
-if(!process.env["FIREBASE_DATABASE_URL"]) {
-    throw new Error("FIREBASE_DATABASE_URL required.");
-}
 
 const endpointUrl = url.format({
     protocol: 'http',
@@ -32,8 +29,7 @@ const options = {
 const admin = require("firebase-admin");
 const serviceAccount = require(process.env["FIREBASE_CREDENTIAL"]);
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: process.env["FIREBASE_DATABASE_URL"]
+    credential: admin.credential.cert(serviceAccount)
 });
 
 const docpath = process.env["FIREBASE_DOCPATH"] || '/googlehome/chant';
