@@ -36,8 +36,9 @@ admin.initializeApp({
     databaseURL: process.env["FIREBASE_DATABASE_URL"]
 });
 
+const docpath = process.env["FIREBASE_DOCPATH"] || '/googlehome/chant';
 const firestore = admin.firestore();
-const document = firestore.doc("/googlehome/chant");
+const document = firestore.doc(docpath);
 document.onSnapshot(
     docSnapshot => {
         const text = docSnapshot.get("message");
