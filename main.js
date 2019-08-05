@@ -35,24 +35,18 @@ admin.initializeApp({
 const docpath = process.env["FIREBASE_DOCPATH"] || '/googlehome/chant';
 const firestore = admin.firestore();
 const document = firestore.doc(docpath);
-document.onSnapshot(
-    docSnapshot => {
-        const text = docSnapshot.get("message");
-        if (text) {
-            options.form = {
-                'text': text
-            };
-            console.log(new Date().toFormat("YYYY-MM-DD HH24:MI:SS"), ' POST ' + endpointUrl);
-            request(options).then((res) => {
-                document.update({message: ""}).then(() => {
-                    console.log(res);
-                });
-            }).catch((err) => {
-                console.error(err);
-            });
-        }
-    }, err => {
-        console.error("Firestore error:", err);
-        console.error(document);
+document.onSnapshot((docSnapshot) => {
+    const text = docSnapshot.get("message");
+    if (text) {
+        options.form = {'text': text};
+        console.log(new Date().toFormat("YYYY-MM-DD HH24:MI:SS"), ' POST ' + endpointUrl);
+        request(options).then((res) => {
+            document.update({message: ""}).then(() => {
+                console.log(res);
+            }).catch((err) => console.error(err));
+        }).catch((err) => console.error(err));
     }
-);
+}, (err) => {
+    console.error("Firestore error:", err);
+    console.error(document);
+});
