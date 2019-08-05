@@ -18,10 +18,10 @@ const endpointUrl = url.format({
     port: process.env["SERVER_PORT"] || 8080,
     hostname: process.env["SERVER_ADDRESS"],
     pathname: process.env["DEVICE_ADDRESS"]
-});
+}).toString();
 
 const options = {
-    url: endpointUrl.toString(),
+    url: endpointUrl,
     method: 'POST',
     form: {}
 };
@@ -42,7 +42,7 @@ document.onSnapshot(
             options.form = {
                 'text': text
             };
-            console.log(new Date().toFormat("YYYY-MM-DD HH24:MI:SS"), ' POST ' + endpointUrl.toString());
+            console.log(new Date().toFormat("YYYY-MM-DD HH24:MI:SS"), ' POST ' + endpointUrl);
             request(options).then((res) => {
                 document.update({message: ""}).then(() => {
                     console.log(res);
