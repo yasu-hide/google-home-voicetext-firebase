@@ -8,5 +8,6 @@ RUN npm config set unsafe-perm true \
 COPY main.js /tmp/main.js
 RUN mkdir /tmp/cred && chmod 0700 /tmp/cred
 ENV FIREBASE_CREDENTIAL "/tmp/cred/serviceAccountKey.json"
+RUN touch ${FIREBASE_CREDENTIAL}
 ENTRYPOINT ["node"]
 CMD ["/tmp/main.js"]
