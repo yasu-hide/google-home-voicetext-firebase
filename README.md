@@ -65,3 +65,15 @@ vi k8s-google-home-voicetext-firebase.yml
 ```
 $ kubectl apply -f k8s-google-home-voicetext-firebase.yml
 ```
+
+# docker-compose
+## 環境設定ファイル準備 (.env)
+パラメータを編集します。
+```
+$ vi .env
+```
+
+## 起動 (up)
+```
+$ docker-compose up -d
+```
