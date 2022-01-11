@@ -11,7 +11,7 @@
     "dependencies": {
         "date-utils": "^1.2.21",
         "url": "^0.11.0",
-        "firebase-admin": "^8.2.0",
+        "firebase-admin": "^9.0.0",
         "request": "^2.88.0",
         "request-promise": "^4.2.4"
     }
