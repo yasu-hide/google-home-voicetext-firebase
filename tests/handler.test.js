@@ -51,6 +51,13 @@ describe('buildEndpointUrl', () => {
         vi.stubEnv('DEVICE_ADDRESS', '/api/tts');
         expect(buildEndpointUrl()).toBe('http://192.168.1.10:8080/api/tts');
     });
+
+    test('DEVICE_ADDRESS がスラッシュなし: 先頭に / を補完する', () => {
+        vi.stubEnv('SERVER_ADDRESS', 'google-home-voicetext-server');
+        vi.stubEnv('DEVICE_ADDRESS', 'device.local');
+        vi.stubEnv('SERVER_PORT', '12080');
+        expect(buildEndpointUrl()).toBe('http://google-home-voicetext-server:12080/device.local');
+    });
 });
 
 describe('handleSnapshot', () => {
