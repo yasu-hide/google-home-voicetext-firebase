@@ -6,14 +6,13 @@ validateEnv();
 
 const endpointUrl = buildEndpointUrl();
 
-const admin = require('firebase-admin');
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
 const serviceAccount = require(process.env['FIREBASE_CREDENTIAL']);
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-});
+initializeApp({ credential: cert(serviceAccount) });
 
 const docpath = process.env['FIREBASE_DOCPATH'] || '/googlehome/chant';
-const firestore = admin.firestore();
+const firestore = getFirestore();
 const document = firestore.doc(docpath);
 document.onSnapshot(
     (docSnapshot) => handleSnapshot(docSnapshot, endpointUrl, document),
