@@ -1,13 +1,12 @@
-FROM node:16.20.2-bullseye-slim
-WORKDIR /tmp
-COPY package.json /tmp/package.json
-RUN npm config set unsafe-perm true \
-    && npm update -y -g npm \
-    && npm install \
-    && npm config set unsafe-perm false
-COPY main.js /tmp/main.js
-RUN mkdir /tmp/cred && chmod 0700 /tmp/cred
-ENV FIREBASE_CREDENTIAL "/tmp/cred/serviceAccountKey.json"
+FROM dhi.io/node:22-alpine-sfw-dev
+
+WORKDIR /app
+COPY package.json package-lock.json /app/
+RUN npm ci --omit=dev
+COPY main.js /app/main.js
+RUN mkdir /app/cred && chmod 0755 /app/cred
+ENV FIREBASE_CREDENTIAL "/app/cred/serviceAccountKey.json"
 RUN touch ${FIREBASE_CREDENTIAL}
+
 ENTRYPOINT ["node"]
-CMD ["/tmp/main.js"]
+CMD ["/app/main.js"]
