@@ -24,7 +24,7 @@ spec:
             name: google-home-voicetext-firebase
         volumeMounts:
         - name: firebase-credential
-          mountPath: /tmp/cred
+          mountPath: /app/cred
           readOnly: true
       volumes:
       - name: firebase-credential
@@ -43,4 +43,4 @@ data:
   SERVER_ADDRESS: 'google-home-voicetext-server'
   SERVER_PORT: '80'
   DEVICE_ADDRESS: ''
-  FIREBASE_CREDENTIAL: '/tmp/cred/serviceAccountKey.json'
+  FIREBASE_CREDENTIAL: '/app/cred/serviceAccountKey.json'
