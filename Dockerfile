@@ -4,6 +4,7 @@ WORKDIR /app
 COPY package.json package-lock.json /app/
 RUN npm ci --omit=dev
 COPY main.js /app/main.js
+COPY lib/ /app/lib/
 RUN mkdir /app/cred && chmod 0755 /app/cred
 ENV FIREBASE_CREDENTIAL "/app/cred/serviceAccountKey.json"
 RUN touch ${FIREBASE_CREDENTIAL}
