@@ -4,7 +4,8 @@
     "description": "",
     "main": "main.js",
     "scripts": {
-        "test": "vitest run"
+        "test": "vitest run",
+        "coverage": "vitest run --coverage"
     },
     "author": "yasuhide",
     "license": "MIT",
@@ -16,6 +17,7 @@
         "uuid": "^11.1.1"
     },
     "devDependencies": {
+        "@vitest/coverage-v8": "^4.1.8",
         "vitest": "^4.1.8"
     }
 }
