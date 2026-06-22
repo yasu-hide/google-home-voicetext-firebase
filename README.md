@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/github/yasu-hide/google-home-voicetext-firebase/graph/badge.svg?token=WB4APCSC36)](https://codecov.io/github/yasu-hide/google-home-voicetext-firebase)
+
 # google-home-voicetext-firebase
 [sikkimtemiさん](https://github.com/sikkimtemi)の[google-home-voicetext](https://github.com/sikkimtemi/google-home-voicetext)のFirebase連携の再実装です。
 
