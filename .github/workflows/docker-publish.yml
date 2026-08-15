@@ -4,11 +4,25 @@ on:
   push:
     branches:
       - master
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - main.js
+      - lib/**
+      - package.json
+      - package-lock.json
     tags:
       - 'v*'
   pull_request:
     branches:
       - master
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - main.js
+      - lib/**
+      - package.json
+      - package-lock.json
 
 permissions:
   contents: read
