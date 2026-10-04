@@ -2,7 +2,8 @@ FROM dhi.io/node:22-alpine-sfw-dev
 
 WORKDIR /app
 COPY package.json package-lock.json /app/
-RUN npm ci --omit=dev
+RUN node -p 'JSON.stringify({ arch: process.arch, version: process.version })' \
+	&& npm ci --omit=dev --foreground-scripts --loglevel verbose
 COPY main.js /app/main.js
 COPY lib/ /app/lib/
 RUN mkdir /app/cred && chmod 0755 /app/cred
